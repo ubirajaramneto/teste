@@ -14,9 +14,16 @@ class ProductsController < ApplicationController
 	end
 
 	def new
+		@product = Product.new
 	end
 
 	def create
+		@product = Product.new (params[:product])
+		if @product.save
+			redirect_to index_path
+		else
+			render 'new'
+		end
 	end
 
 	def destroy

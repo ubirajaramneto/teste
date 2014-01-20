@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="large-5 large-centered columns">
+		<h1>Create new product</h1>
+		<%= form_for @product, :url => {action: "create"} do |f| %>
+			<%= label_tag(:name, "Name:") %>
+			<%= f.text_field (:name) %>
+			<%= label_tag(:price, "Price:") %>
+			<%= f.text_field (:price) %>
+			<%= label_tag(:active, "Activated?") %>
+			<%= radio_button_tag(:active, "Yes") %>
+			<%= label_tag(:active, "Yes") %>
+			<%= radio_button_tag(:active, "No") %>
+			<%= label_tag(:active, "No") %>
+			<%= label_tag(:category, "Category") %>
+			<%= collection_select(:product, :category_id, Category.all, :id, :name) %>
+			<%= f.submit "Create", :class => "button" %>
+			<%= link_to "Cancel", root_path, :class => "button" %>
+		<% end %>
+	</div>
+</div>

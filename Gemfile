@@ -25,6 +25,7 @@ gem 'foundation-rails'
 #=========TEST GEMS===========
 gem 'rspec-rails'
 gem 'capybara'
+gem 'poltergeist'
 #=============================
 
 # Use jquery as the JavaScript library

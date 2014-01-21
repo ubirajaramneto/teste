@@ -18,7 +18,8 @@ class ProductsController < ApplicationController
 	end
 
 	def create
-		@product = Product.new (params[:product])
+		params.permit!
+		@product = Product.new(params[:product])
 		if @product.save
 			redirect_to index_path
 		else
@@ -42,6 +43,10 @@ class ProductsController < ApplicationController
 	end
 
 	def deactivate_selected
+	end
+
+	def product_params
+	    params.permit(:name, :price, :active, :category_id)
 	end
 
 end

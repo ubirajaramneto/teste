@@ -12,13 +12,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%= @products_index.each do |r| %>
+				<% @products_index.each do |r| %>
 
 					<tr>
 						<td><%= r.name %></td>
 						<td><%= r.price %></td>
 						<td><%= r.active %></td>
-						<td><%= r.category %></td>
+						<td><%= r.category.name %></td>
 					</tr>
 
 				<% end %>

@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
 		params.permit!
 		@product = Product.new(params[:product])
 		if @product.save
-			redirect_to index_path
+			redirect_to root_path
 		else
 			render 'new'
 		end

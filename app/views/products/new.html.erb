@@ -16,11 +16,13 @@
 			<%= f.text_field (:name) %>
 			<%= label_tag(:price, "Price:") %>
 			<%= f.text_field (:price) %>
-			<%= label_tag(:active, "Activated?") %>
-			<%= radio_button_tag(:active, "Yes") %>
-			<%= label_tag(:active, "Yes") %>
-			<%= radio_button_tag(:active, "No") %>
-			<%= label_tag(:active, "No") %>
+			<%= f.label :active, "Active?" %>
+			
+			<%= f.radio_button :active, true %>
+			<%= f.label :active, "Yes" %>
+			
+			<%= f.radio_button :active, false %>
+			<%= f.label :active, "No" %>
 			<%= label_tag(:category, "Category") %>
 			<%= collection_select(:product, :category_id, Category.all, :id, :name) %>
 			<a href="#" data-reveal-id="category-modal" class="button">Create new Category</a>

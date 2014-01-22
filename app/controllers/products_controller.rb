@@ -1,5 +1,16 @@
 class ProductsController < ApplicationController
 
+	def ws_gateway
+		respond_to do |format|
+			if params[:deactivate_selected]
+				@product_ws_request = Product.where({id: [params[:product_ids]]}).update_all("active = 0")
+				format.json {render :nothing => true, status: 200}
+			else
+				format.json {render :nothing => true, status: 400}	
+			end
+		end			
+	end
+
 	def index
 		@products_index = Product.all
 	end
@@ -36,13 +47,17 @@ class ProductsController < ApplicationController
 	def activate
 	end
 
-	def deactivate
+	def deactivate		
 	end
 
 	def activate_selected
 	end
 
-	def deactivate_selected
+	private
+	def deactivate_selected(product_array)
+		product_array.each do |product|
+			product.update_attribute(:active => false)
+		end 
 	end
 
 	def product_params

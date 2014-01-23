@@ -4,14 +4,12 @@ ImaBoldTest::Application.routes.draw do
   root 'products#index'
 
   #============PRODUCTS ROUTES================
-  put '/products/deactivate_selected/:id', to: 'products#deactivate_selected', :as => 'deactivate_selected'
-  delete 'destroy_selected', to:'products#destroy_selected', :as => 'destroy_selected'
-  put 'activate', to: 'products#activate', :as => 'activate'
-  put 'deactivate', to: 'products#deactivate', :as => 'deactivate'
-  put 'activate_selected', to: 'products#activate_selected', :as => 'activate_selected'
   resources :products do
     collection do
       post 'ws_gateway'
+      post 'filter'
+      post 'activate'
+      post 'deactivate'
     end
   end
   #==============CATEGORY ROUTES==============

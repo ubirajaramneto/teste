@@ -21,28 +21,18 @@ $(document).ready(function () {
         });
     });
 
+    $('#check-all').click(function(){
+
+    	if ($('#check-all').is(":checked")){
+    		$('.option-box').prop("checked", "checked")
+    	}else{
+    		$('.option-box').removeAttr("checked");
+    	};
+    	
+    });
+
     $('#product_price').decimalMask("99999.99")
 
-    $('#deactivate-selected-trigger').click(send_request);
 
 });
 
-function build_id_array(){
-
-	var request_array = new Array();
-	$("input:checked").each(function(index){
-			request_array[index] = $(this).attr("value");
-	});
-	return request_array;
-	
-};
-
-function send_request(){
-	var ids = build_id_array();
-	console.log(ids);
-	$.ajax({
-		url: "/products/deactivate_selected/" + ids ,
-		type: 'PUT',
-		dataType: 'json'
-	});
-}

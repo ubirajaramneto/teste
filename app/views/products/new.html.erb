@@ -1,50 +1,6 @@
 <div class="row">
 	<div class="large-5 large-centered columns">
 		<h1>Create new product</h1>
-		<% if @product.errors.any? %>
-		  	<div id="error_explanation">
-			    <h4><%= pluralize(@product.errors.count, "error") %> prohibited this post from being saved:</h4>
-			    <ul>
-				    <% @product.errors.full_messages.each do |msg| %>
-				      <li><%= msg %></li>
-				    <% end %>
-			    </ul>
-			</div>
-		<% end %>
-		<%= form_for @product, :url => {action: "create"} do |f| %>
-			<%= label_tag(:name, "Name:") %>
-			<%= f.text_field (:name) %>
-			<%= label_tag(:price, "Price:") %>
-			<%= f.text_field (:price) %>
-			<%= f.label :active, "Active?" %>
-			
-			<%= f.radio_button :active, true %>
-			<%= f.label :active, "Yes" %>
-			
-			<%= f.radio_button :active, false %>
-			<%= f.label :active, "No" %>
-			<%= label_tag(:category, "Category") %>
-			<%= collection_select(:product, :category_id, Category.all, :id, :name) %>
-			<a href="#" data-reveal-id="category-modal" class="button">Create new Category</a>
-			<%= f.submit "Create", :class => "button" %>
-			<%= link_to "Cancel", root_path, :class => "button" %>
-		<% end %>
+		<%= render 'form' %>
 	</div>
-</div>
-<div id="category-modal" class="reveal-modal medium" data-reveal>
-	<%= form_tag("/categories", :method => "post", :id => "category-form", remote: true) do %>
-		<div class="row">
-			<div class="large-4 large-centered columns">
-				<h4>New category</h4>
-				<%= label_tag(:category, "Category:") %>
-				<%= text_field(:category, :name) %>
-				<%= submit_tag "Create category", :class => "button", :disable_with => "Processing" %>
-			</div>
-			<div data-alert id="category-call-failure" class="alert-box warning radius" style="opacity: 0">
-			  <h3>Failure!</h3>
-			  <a href="#" class="close">&times;</a>
-			</div>
-		</div>
-	<% end %>
-	<a class="close-reveal-modal">&#215;</a>
-</div>
+</div>	

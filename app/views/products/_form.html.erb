@@ -8,7 +8,7 @@
 	    </ul>
 	</div>
 <% end %>
-<%= form_for @product, :url => {action: "create"} do |f| %>
+<%= form_for @product do |f| %>
 	<%= label_tag(:name, "Name:") %>
 	<%= f.text_field (:name) %>
 	<%= label_tag(:price, "Price:") %>

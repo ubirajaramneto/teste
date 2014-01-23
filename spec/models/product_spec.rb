@@ -5,7 +5,6 @@ describe Product do
 		product = Product.new(:name => "", :price => "gh", :active => "", :category_id => "")
 		expect(product).to have(1).error_on(:name)
 		expect(product).to have(1).error_on(:price)
-		expect(product).to have(1).error_on(:active)
 	end
 
 	it "tests the numeracality of the price field" do

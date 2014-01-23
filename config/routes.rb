@@ -8,6 +8,8 @@ ImaBoldTest::Application.routes.draw do
     collection do
       post 'ws_gateway'
       post 'filter'
+    end
+    member do
       post 'activate'
       post 'deactivate'
     end

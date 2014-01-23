@@ -33,6 +33,5 @@ $(document).ready(function () {
 
     $('#product_price').decimalMask("99999.99")
 
-
 });
 

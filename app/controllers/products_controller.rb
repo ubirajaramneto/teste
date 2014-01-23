@@ -33,28 +33,22 @@ class ProductsController < ApplicationController
 
 	def activate
 		@product = Product.find(params[:id])
-		
 		respond_to do |format|
-			if @product.update_attribute(:activate, "1")
-				format.json {render :nothing => true, status: 200}
-				format.js {render :nothing => true, status: 200}
-			else
-				format.json {render :nothing => true, status: 400}
-				format.js {render :nothing => true, status: 400}
+			if @product.update_column(:active, "1")
+				format.html {redirect_to(product_url)}
+				format.json {head :no_content}
+				format.js {render :layout => false}
 			end
 		end
 	end
 
 	def deactivate
 		@product = Product.find(params[:id])
-		
 		respond_to do |format|
-			if @product.update_attribute(:activate, "0")
-				format.json {render :nothing => true, status: 200}
-				format.js {render :nothing => true, status: 200}
-			else
-				format.json {render :nothing => true, status: 400}
-				format.js {render :nothing => true, status: 400}
+			if @product.update_column(:active, "0")
+				format.html {redirect_to(product_url)}
+				format.json {head :no_content}
+				format.js {render :layout => false}
 			end
 		end
 	end
@@ -79,9 +73,9 @@ class ProductsController < ApplicationController
 
 	def update
 		params.permit!
-		@procuct = Product.find(params[:id])
+		@product = Product.find(params[:id])
 		respond_to do |format|
-			if @product.save
+			if @product.update_attributes(params[:product])
 				format.html {redirect_to @product }
 				format.json {head :no_content}
 			else
@@ -109,6 +103,11 @@ class ProductsController < ApplicationController
 	def destroy
 		@product = Product.find(params[:id])
 	    @product.destroy
+	    respond_to do |format|
+	      format.html { redirect_to product_url }
+	      format.json { head :no_content }
+	      format.js   { render :layout => false }
+	    end
 	end
 
 	def product_params
